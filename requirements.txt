@@ -3,3 +3,4 @@ tqdm
 requests
 argparse
 scipy
+wandb==0.15.11
