@@ -10,7 +10,7 @@ import torch
 from osim.env import L2M2019Env
 
 # others
-import wandb
+# import wandb
 
 
 # Environment and model hyperparameters
@@ -225,7 +225,7 @@ class Agent:
         q2_loss = torch.nn.MSELoss()(q2, next_q_value)
         q_loss = q1_loss + q2_loss
         
-        wandb.log({"q loss": q_loss.item()})
+        # wandb.log({"q loss": q_loss.item()})
         self.critic_optimizer.zero_grad()
         q_loss.backward()
         self.critic_optimizer.step()
@@ -239,7 +239,7 @@ class Agent:
         min_q_pi = torch.min(q1_pi, q2_pi) # Q(s_t, f)
 
         policy_loss = ((self.alpha * log_pis) - min_q_pi).mean() # J_pi = E[(alpha * log_pi) - Q]
-        wandb.log({"pi loss": policy_loss.item()})
+        # wandb.log({"pi loss": policy_loss.item()})
         self.policy_optimizer.zero_grad()
         policy_loss.backward()
         self.policy_optimizer.step()
@@ -249,7 +249,7 @@ class Agent:
 
         # update alpha
         alpha_loss = -(self.log_alpha * (log_pis + self.target_entropy).detach()).mean() # not on paper
-        wandb.log({"alpha loss": alpha_loss.item()})
+        # wandb.log({"alpha loss": alpha_loss.item()})
         self.alpha_optimizer.zero_grad()
         alpha_loss.backward()
         self.alpha_optimizer.step()
