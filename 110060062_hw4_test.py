@@ -262,7 +262,7 @@ class Agent:
             target_param.data.copy_(target_param.data * (1.0 - tau) + param.data * tau)
 
     def load_test(self, pi_name):
-        # self.policy.eval()
+        self.policy.eval()
         # self.policy.load_state_dict(torch.load(pi_name))
         self.policy.load_state_dict(torch.load(pi_name, map_location=torch.device('cpu')))
 
