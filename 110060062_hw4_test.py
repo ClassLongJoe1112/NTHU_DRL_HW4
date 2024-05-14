@@ -27,7 +27,7 @@ MEMORY_SIZE = 4000000  # Size of the replay memory buffer
 
 # check if GPU is available
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
+ 
 class QNetwork(torch.nn.Module):
     def __init__(self):
         super(QNetwork, self).__init__()
